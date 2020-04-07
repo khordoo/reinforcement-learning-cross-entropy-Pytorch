@@ -5,7 +5,7 @@ import torch.nn as nn
 import torch.nn.functional as nnf
 import numpy as np
 from tensorboardX import SummaryWriter
-
+ENV_NAME = 'CartPole-v1'
 BATCH_SIZE = 200
 NETWORK_HIDDEN_SIZE = 24
 TARGET_REWARD_LEVEL = 199
@@ -133,7 +133,7 @@ class Session:
         print("Total reward: %.2f" % total_reward)
 
 
-env = gym.make('CartPole-v1')
+env = gym.make(ENV_NAME)
 net = Net(observation_size=env.observation_space.shape[0],
           hidden_size=NETWORK_HIDDEN_SIZE,
           action_size=env.action_space.n)
