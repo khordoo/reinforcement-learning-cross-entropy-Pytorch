@@ -84,7 +84,7 @@ class Session:
                 self.writer.close()
                 break
             step += 1
-            print(f'\r{step} : loss: {loss.item()}, reward:{mean_reward}', end='')
+            print(f'{step} : loss: {loss.item()}, reward:{mean_reward}')
             self.writer.add_scalar('Mean reward', mean_reward, step)
             self.writer.add_scalar('LOss', loss.item(), step)
 
@@ -97,7 +97,7 @@ class Session:
 
         while True:
             actions_score = self.net(torch.FloatTensor(state))
-            actions_prob = nnf.softmax(actions_score)
+            actions_prob = nnf.softmax(actions_score, dim=0)
 
             action = np.random.choice(number_of_actions, size=1, p=actions_prob.data.numpy())[0]
 
